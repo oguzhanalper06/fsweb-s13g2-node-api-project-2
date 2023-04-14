@@ -1,3 +1,12 @@
-// server için gerekli olanları burada ayarlayın
+const express = require("express");
+const server = express();
+server.use(express.json());
 
-// posts router'ını buraya require edin ve bağlayın
+const postsRoute = require("./../api/posts/posts-router");
+server.use("/api/posts", postsRoute);
+
+server.get("/", (req, res) => {
+  res.status(200).json("Hello from the clean, simple and easy server.js file");
+});
+
+module.exports = server;
